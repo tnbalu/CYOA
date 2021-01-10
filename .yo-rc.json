@@ -1,0 +1,40 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "com.cyoa"
+    },
+    "jhipsterVersion": "6.10.0",
+    "applicationType": "monolith",
+    "baseName": "cyoa",
+    "packageName": "com.cyoa",
+    "packageFolder": "com/cyoa",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
+    "cacheProvider": "ehcache",
+    "enableHibernateCache": true,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "mysql",
+    "prodDatabaseType": "mysql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": false,
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "OWYwOTdkNjRlNjlmOTNjNDhmOTZlZTVkYjNiNzg3NGQ4ODQ0OTJmMzk0ZjBlNmUwNmNiZDUwY2I2NTllMWMyMWRkMDI5MDM2OTIyZTQxYzFlZDY0MTExODA1MjFhYzJjMzQ3YWY3M2E5MTg0NWI0OTFmZjA5Y2FiNjQ4MGQwMjc=",
+    "embeddableLaunchScript": false,
+    "useSass": true,
+    "clientPackageManager": "npm",
+    "clientFramework": "react",
+    "clientTheme": "materia",
+    "clientThemeVariant": "primary",
+    "creationTimestamp": 1610238134319,
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [],
+    "enableTranslation": false,
+    "blueprints": []
+  }
+}

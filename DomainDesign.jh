@@ -1,0 +1,224 @@
+entity Menu {
+    Name String required
+	title String required
+	href String 
+    icon String 
+    target String 
+    hasSubMenu Boolean 
+    parentId Integer
+}
+
+entity Company {
+    Name String
+	Address String
+	Address2 String
+	City String 
+	State String
+	Country String
+	Footer String
+	Slogan String
+	Logo String
+	Photo Blob required
+	
+}
+entity Attachment {
+    filename String required            // Generated unique filename on the server
+    originalFilename String required    // Original filename on the users computer
+    extension String required
+    sizeInBytes Integer required
+    sha256 String required              // Can be useful for duplication and integrity checks
+    contentType String required
+    uploadDate Instant required
+}
+entity Content {
+  data Blob required
+}
+
+relationship OneToOne {
+  Document{content} to Content{document(id) required}
+}
+
+relationship OneToMany {
+  Company{document} to Document{company(id) required}
+}
+entity Document {
+  title String required
+  size Long required
+  mimeType String
+}
+
+entity PageesSettings {
+    Name String
+    isHeaderRequired Boolean
+}
+entity Tabs{
+	Name String	
+	Url String	
+}
+entity CYOA_Entitty{
+	Name String
+    IsParent Boolean
+    ChildEntitty String
+	Validation String
+}
+entity CYOA_EntittyField{
+	Name String
+	DisplayName String
+	Id Integer
+	EntittyType EntittyType
+	LookupQuery String
+	IsHidden Boolean
+    IsHeader Boolean
+	IsList Boolean
+	IsForm Boolean
+	IsOrderBy Boolean
+	IsFilter Boolean
+	IsRequired Boolean
+	Length Integer
+}
+enum CYOA_EntittyType {
+    TEXT, PASSWORD, CHECKBOX, RADIOBOX, SELECT, MULTISELECT, LOOKUPFROMDB, DATE, DATETIME, LINK,NUMBER
+}
+entity EntittyAccess{
+	Name String
+	IsAdd Boolean
+    IsEdit Boolean
+    IsDelete Boolean
+}
+
+entity Roles{
+	Name String	
+}
+
+relationship OneToOne {
+    Menu{pagees(name)} to Pagees,
+    PageesSettings{pagees(name)} to Pagees
+}
+relationship OneToMany {
+     Pagees{tabs(Name)} to Tabs{Pagees(Name)},
+    Tabs{roles(Name)} to Roles{Tabs(Name)},
+    Entitty{entittyField(Name)} to EntittyField{Entitty(Name)},
+    Entitty{roles(Name)} to Roles{Entitty(Name)},
+	Menu{roles(Name)} to Roles{Menu(Name)},
+    Roles{entittyAccess(Name)} to EntittyAccess{Roles(Name)}
+	
+}
+
+
+
+
+entity Region {
+	regionName String
+}
+
+
+entity Country {
+	countryName String
+}
+
+// an ignored comment
+/** not an ignored comment */
+entity Location {
+	streetAddress String,
+	postalCode String,
+	city String,
+	stateProvince String
+}
+
+entity Department {
+	departmentName String required
+}
+
+/**
+ * Task entity.
+ * @author The JHipster team.
+ */
+entity Task {
+	title String,
+	description String
+}
+
+/**
+ * The Employee entity.
+ */
+entity Employee {
+	/**
+	* The firstname attribute.
+	*/
+	firstName String,
+	lastName String,
+	email String,
+	phoneNumber String,
+	hireDate Instant,
+	salary Long,
+	commissionPct Long
+}
+
+entity Job {
+	jobTitle String,
+	minSalary Long,
+	maxSalary Long
+}
+
+entity JobHistory {
+	startDate Instant,
+	endDate Instant,
+	language Language
+}
+
+enum Language {
+    FRENCH, ENGLISH, SPANISH
+}
+
+relationship OneToOne {
+	Country{region} to Region
+}
+
+relationship OneToOne {
+	Location{country} to Country
+}
+
+relationship OneToOne {
+	Department{location} to Location
+}
+
+relationship ManyToMany {
+	Job{task(title)} to Task{job}
+}
+
+// defining multiple OneToMany relationships with comments
+relationship OneToMany {
+	Employee to Job{employee},
+	/**
+	* A relationship
+	*/
+	Department to
+	/**
+	* Another side of the same relationship
+	*/
+	Employee{department}
+}
+
+relationship ManyToOne {
+	Employee{manager} to Employee
+}
+
+// defining multiple oneToOne relationships
+relationship OneToOne {
+	JobHistory{job} to Job,
+	JobHistory{department} to Department,
+	JobHistory{employee} to Employee
+}
+
+// Set pagination options
+paginate JobHistory, Employee with infinite-scroll
+paginate Job,Menu,Entitty,EntittyField,Roles,Pagees with pagination
+
+// Use Data Transfert Objects (DTO)
+// dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl except Employee, Job
+
+// Set an angular suffix
+// angularSuffix * with mySuffix
