@@ -1,6 +1,6 @@
 # cyoa
 
-This application was generated using JHipster 6.10.0, you can find documentation and help at [https://www.jhipster.tech/documentation-archive/v6.10.0](https://www.jhipster.tech/documentation-archive/v6.10.0).
+This application is Design Your Own App
 
 ## Development
 
@@ -181,11 +181,11 @@ Then run:
 docker-compose -f src/main/docker/app.yml up -d
 ```
 
-For more information refer to [Using Docker and Docker-Compose][], this page also contains information on the docker-compose sub-generator (`jhipster docker-compose`), which is able to generate docker configurations for one or several JHipster applications.
+For more information refer to [Using Docker and Docker-Compose][], this page also contains information on the docker-compose sub-generator , which is able to generate docker configurations for one or several JHipster applications.
 
 ## Continuous Integration (optional)
 
-To configure CI for your project, run the ci-cd sub-generator (`jhipster ci-cd`), this will let you generate configuration files for a number of Continuous Integration systems. Consult the [Setting up Continuous Integration][] page for more information.
+To configure CI for your project, run the ci-cd sub-generator , this will let you generate configuration files for a number of Continuous Integration systems. Consult the [Setting up Continuous Integration][] page for more information.
 
 [jhipster homepage and latest documentation]: https://www.jhipster.tech
 [jhipster 6.10.0 archive]: https://www.jhipster.tech/documentation-archive/v6.10.0
